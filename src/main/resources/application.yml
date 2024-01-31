@@ -1,0 +1,14 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /LangChainJavaChat
+
+spring:
+  application:
+    name: LangChainJavaChat
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+OPENAI_API_KEY: sk-*******************
