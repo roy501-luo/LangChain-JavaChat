@@ -7,7 +7,8 @@
 
 ### 1、在application.yml中设置自己的openapi-key
 ```
-$ application.yml
+src/main/resources/application.yml
+
 OPENAI_API_KEY: sk-VC6*********EZErj86w
 ```
 
