@@ -12,3 +12,6 @@ spring:
       max-request-size: 100MB
 
 OPENAI_API_KEY: sk-*******************
+
+fast_chat:
+  url: http://127.0.0.1:20000/v1/

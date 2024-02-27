@@ -18,6 +18,7 @@
         <knife4j.version>3.0.3</knife4j.version>
         <langchain4j.version>0.26.1</langchain4j.version>
         <hutool.version>5.8.15</hutool.version>
+        <openfeign.version>4.1.0</openfeign.version>
     </properties>
     <dependencies>
         <dependency>
@@ -81,6 +82,11 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${openfeign.version}</version>
         </dependency>
     </dependencies>
 
