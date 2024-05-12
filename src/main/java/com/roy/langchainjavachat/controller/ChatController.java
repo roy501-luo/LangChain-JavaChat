@@ -43,6 +43,12 @@ public class ChatController {
         return assistant.chat(sessionId, question);
     }
 
+    @GetMapping("qa")
+    @ApiOperation(value = "单轮问答")
+    public String llmQA(@ApiParam(value = "问句", required = true) @RequestParam String question) {
+        return chatLanguageModel.generate(question);
+    }
+
     @ApiOperation(value = "与大模型对话(前台控制多轮问答)")
     @PostMapping("chat")
     public String llm(@ApiParam(value = "内容对象", required = true) @RequestBody ChatMsgReq req) {
