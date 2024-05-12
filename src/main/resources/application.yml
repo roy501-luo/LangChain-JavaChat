@@ -20,15 +20,7 @@ langchain4j:
       model-name: Baichuan2-7B-Chat-4bits
       log-requests: true
       log-responses: true
-    streaming-chat-model:
-      base-url: http://127.0.0.1:20000/v1
-      api-key: sk-*******************
-      model-name: Baichuan2-7B-Chat-4bits
-
-OPENAI_API_KEY: sk-*******************
-
-dashscope:
-  api-key: sk-*******************
+      api-key: "demo"
 
 logging:
   level:
