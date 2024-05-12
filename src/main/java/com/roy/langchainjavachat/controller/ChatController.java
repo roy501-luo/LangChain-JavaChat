@@ -6,11 +6,8 @@ import com.roy.langchainjavachat.service.Assistant;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.UserMessage;
-import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.output.Response;
-import dev.langchain4j.service.AiServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -33,20 +30,13 @@ import java.util.List;
 @RequestMapping("/v1/")
 public class ChatController {
 
+    @Resource
     Assistant assistant;
 
     @Resource
     ChatLanguageModel chatLanguageModel;
 
-
-    ChatController(Assistant assistant) {
-        this.assistant = AiServices.builder(Assistant.class)
-                .chatLanguageModel(OpenAiChatModel.withApiKey("demo"))
-                .chatMemoryProvider(memoryId -> MessageWindowChatMemory.withMaxMessages(10))
-                .build();
-    }
-
-    @GetMapping("qa")
+    @GetMapping("chat")
     @ApiOperation(value = "与大模型对话(后台控制多轮问答)")
     public String llmQA(@ApiParam(value = "问句", required = true) @RequestParam String question,
                         @ApiParam(value = "会话ID", required = true) @RequestParam String sessionId) {
