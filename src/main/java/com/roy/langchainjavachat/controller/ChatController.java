@@ -65,11 +65,4 @@ public class ChatController {
         return chatLanguageModel.generate(question);
     }
 
-    @GetMapping("translate")
-    @ApiOperation(value = "翻译工具")
-    public String translate(@ApiParam(value = "问句", required = true, defaultValue = "hello") @RequestParam String text,
-                            @ApiParam(value = "目标语言", required = true, defaultValue = "chinese") @RequestParam String language) {
-        return assistant.translate(text, language);
-    }
-
 }
