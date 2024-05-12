@@ -14,16 +14,11 @@ import static dev.langchain4j.data.message.SystemMessage.systemMessage;
 import static dev.langchain4j.data.message.UserMessage.userMessage;
 import static java.util.Arrays.asList;
 
-public class ChatServiceTest {
+public class ChatTest {
 
     @Test
     public void StreamChat() {
-        OpenAiStreamingChatModel model = OpenAiStreamingChatModel.builder()
-                .baseUrl("http://101.132.141.49:20000/v1")
-                .apiKey("123")
-                .modelName("Baichuan2-7B-Chat-4bits")
-                .build();
-
+        OpenAiStreamingChatModel model = OpenAiStreamingChatModel.withApiKey("demo");
         List<ChatMessage> messages = asList(
                 systemMessage("You are a very sarcastic assistant"),
                 userMessage("Tell me a joke")
@@ -50,12 +45,7 @@ public class ChatServiceTest {
 
     @Test
     public void Chat() {
-        OpenAiChatModel model = OpenAiChatModel.builder()
-                .baseUrl("http://101.132.141.49:20000/v1")
-                .apiKey("123")
-                .modelName("Baichuan2-7B-Chat-4bits")
-                .build();
-
+        OpenAiChatModel model = OpenAiChatModel.withApiKey("demo");
         String generate = model.generate("你是谁");
         System.out.println(generate);
     }

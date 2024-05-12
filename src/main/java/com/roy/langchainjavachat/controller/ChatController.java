@@ -3,11 +3,17 @@ package com.roy.langchainjavachat.controller;
 import com.roy.langchainjavachat.annotation.ReWriteBody;
 import com.roy.langchainjavachat.model.req.ChatMsgReq;
 import com.roy.langchainjavachat.service.Assistant;
+import com.roy.langchainjavachat.service.RagService;
+import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.output.Response;
+import dev.langchain4j.service.AiServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,6 +41,9 @@ public class ChatController {
 
     @Resource
     ChatLanguageModel chatLanguageModel;
+
+    @Resource
+    RagService ragService;
 
     @GetMapping("chat")
     @ApiOperation(value = "与大模型对话(后台控制多轮问答)")
@@ -68,6 +77,19 @@ public class ChatController {
     @GetMapping("knowledge_base_chat")
     @ApiOperation(value = "与知识库对话")
     public String knowledgeBaseChat(@ApiParam(value = "问句", required = true) @RequestParam String question) {
+
+        // First, let's load documents that we want to use for RAG
+
+        List<Document> documents = FileSystemDocumentLoader.loadDocuments("documents/test.txt");
+
+        // Second, let's create an assistant that will have access to our documents
+        Assistant assistant = AiServices.builder(Assistant.class)
+                .chatLanguageModel(OpenAiChatModel.withApiKey("demo")) // it should use OpenAI LLM
+                .chatMemory(MessageWindowChatMemory.withMaxMessages(10)) // it should remember 10 latest messages
+                .contentRetriever(ragService.createContentRetriever(documents)) // it should have access to our documents
+                .build();
+
+        String chat = assistant.chat("501", question);
         return chatLanguageModel.generate(question);
     }
 
