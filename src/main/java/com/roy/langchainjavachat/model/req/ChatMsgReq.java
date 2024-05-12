@@ -1,16 +1,55 @@
 package com.roy.langchainjavachat.model.req;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.List;
+
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class ChatMsgReq {
+@ApiModel(value = "对话内容")
+public class ChatMsgReq implements Serializable {
+    /**
+     * 知识库ID
+     */
+    @ApiModelProperty(value = "知识库ID", required = true)
+    private String knowledgeBaseId;
+    /**
+     * 用户问题
+     */
+    @ApiModelProperty(value = "用户问题", required = true)
+    private String question;
+    /**
+     * 历史对话
+     */
+    @ApiModelProperty(value = "历史对话", required = true)
+    private List<HistoryDTO> history;
+    /**
+     * 用户ID
+     */
+    @ApiModelProperty(value = "用户ID", required = true)
+    private String userid;
 
-    @JsonProperty("role")
-    private String role;
+    /**
+     * HistoryDTO
+     */
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class HistoryDTO {
+        /**
+         * role
+         */
+        private String role;
+        /**
+         * content
+         */
+        private String content;
+    }
 
-    @JsonProperty("content")
-    private String content;
 }
