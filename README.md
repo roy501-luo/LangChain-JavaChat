@@ -9,11 +9,14 @@
 ```
 src/main/resources/application.yml
 
-OPENAI_API_KEY: sk-VC6*********EZErj86w
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: sk-*********
 ```
 
 ### 2、启动
-[LangchainJavaChatApplication.java](src/main/java/com/roy/langchainjavachat/LangChainJavaChatApplication.java)
+[LangChainJavaChatApplication.java](src/main/java/com/roy/langchainjavachat/LangChainJavaChatApplication.java)
 
 ### 3、访问 
 http://localhost:8083/langChainJavaChat/doc.html
