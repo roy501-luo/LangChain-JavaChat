@@ -11,13 +11,9 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 
-
 langchain4j:
   open-ai:
     chat-model:
-      api-key: sk-*******************
-      base-url: http://127.0.0.1:20000/v1
-      model-name: Baichuan2-7B-Chat-4bits
       log-requests: true
       log-responses: true
       api-key: "demo"
