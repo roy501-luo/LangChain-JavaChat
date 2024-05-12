@@ -1,5 +1,6 @@
 package com.roy.langchainjavachat.service;
 
+import cn.hutool.core.io.resource.ClassPathResource;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentSplitter;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
@@ -29,8 +30,7 @@ public class RagTest {
     public void Advanced_RAG_with_Metadata_Example() {
 
 //       1、 load——文档加载
-//        Document document = FileSystemDocumentLoader.loadDocument("documents/test.txt", new TextDocumentParser());
-        Document document = FileSystemDocumentLoader.loadDocument("/Users/roy/IdeaProjects/LangChain-JavaChat/src/main/resources/documents/test.txt", new TextDocumentParser());
+        Document document = FileSystemDocumentLoader.loadDocument(new ClassPathResource("/documents/test.txt").getAbsolutePath(), new TextDocumentParser());
 
 //       2、 splitter——文段拆分
         DocumentSplitter recursive = DocumentSplitters.recursive(100, 10);
