@@ -59,7 +59,7 @@ public class RagTest {
         System.out.println(embeddingMatch.score());
         System.out.println(embeddingMatch.embedded().text());
 
-//       5、 prompt
+//       5、 prompt Template 提示词模版
         PromptTemplate from = PromptTemplate.from("<指令>根据已知信息，简洁和专业的来回答问题。如果无法从中得到答案，请说 “根据已知信息无法回答该问题”，答案请使用中文。 </指令>" +
                 "<已知信息>{{context}}</已知信息>" +
                 "<问题>{{question}}</问题>");
@@ -72,7 +72,7 @@ public class RagTest {
 
         System.out.println("----------------------------------");
         System.out.println("User：" + apply.text());
-//       chat 输入大模型
+//       6、 chat 输入大模型
         OpenAiChatModel model = OpenAiChatModel.builder()
                 .apiKey("demo")
                 .logRequests(true)
