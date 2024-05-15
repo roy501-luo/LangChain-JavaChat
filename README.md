@@ -19,4 +19,4 @@ langchain4j:
 [LangChainJavaChatApplication.java](src/main/java/com/roy/langchainjavachat/LangChainJavaChatApplication.java)
 
 ### 3、访问 
-http://localhost:8083/langChainJavaChat/doc.html
+http://localhost:8083/LangChainJavaChat/swagger-ui/index.html

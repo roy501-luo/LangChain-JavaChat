@@ -14,13 +14,13 @@ import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.service.AiServices;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ import java.util.List;
 @Slf4j
 @ReWriteBody
 @RestController
-@Api(tags = "对话管理")
+@Tag(name = "对话管理")
 @RequestMapping("/v1/")
 public class ChatController {
 
@@ -46,21 +46,21 @@ public class ChatController {
     RagService ragService;
 
     @GetMapping("chat")
-    @ApiOperation(value = "与大模型对话(后台控制多轮问答)")
-    public String llmQA(@ApiParam(value = "问句", required = true) @RequestParam String question,
-                        @ApiParam(value = "会话ID", required = true) @RequestParam String sessionId) {
+    @Operation(summary = "与大模型对话(后台控制多轮问答)")
+    public String llmQA(@Parameter(description = "问句", required = true) @RequestParam String question,
+                        @Parameter(description = "会话ID", required = true) @RequestParam String sessionId) {
         return assistant.chat(sessionId, question);
     }
 
     @GetMapping("qa")
-    @ApiOperation(value = "单轮问答")
-    public String llmQA(@ApiParam(value = "问句", required = true) @RequestParam String question) {
+    @Operation(summary = "单轮问答")
+    public String llmQA(@Parameter(description = "问句", required = true) @RequestParam String question) {
         return chatLanguageModel.generate(question);
     }
 
-    @ApiOperation(value = "与大模型对话(前台控制多轮问答)")
+    @Operation(summary = "与大模型对话(前台控制多轮问答)")
     @PostMapping("chat")
-    public String llm(@ApiParam(value = "内容对象", required = true) @RequestBody ChatMsgReq req) {
+    public String llm(@Parameter(description = "内容对象", required = true) @RequestBody ChatMsgReq req) {
         List<ChatMessage> messageList = new ArrayList<>();
         for (ChatMsgReq.HistoryDTO dto : req.getHistory()) {
             if (dto.getRole().equals("user")) {
@@ -75,8 +75,8 @@ public class ChatController {
     }
 
     @GetMapping("knowledge_base_chat")
-    @ApiOperation(value = "与知识库对话")
-    public String knowledgeBaseChat(@ApiParam(value = "问句", required = true) @RequestParam String question) {
+    @Operation(summary = "与知识库对话")
+    public String knowledgeBaseChat(@Parameter(description = "问句", required = true) @RequestParam String question) {
 
         // First, let's load documents that we want to use for RAG
 

@@ -1,7 +1,6 @@
 package com.roy.langchainjavachat.model.req;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,27 +11,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ApiModel(value = "对话内容")
+@Schema(description = "对话内容")
 public class ChatMsgReq implements Serializable {
     /**
      * 知识库ID
      */
-    @ApiModelProperty(value = "知识库ID", required = true)
+    @Schema(description = "知识库ID")
     private String knowledgeBaseId;
     /**
      * 用户问题
      */
-    @ApiModelProperty(value = "用户问题", required = true)
+    @Schema(description = "用户问题")
     private String question;
     /**
      * 历史对话
      */
-    @ApiModelProperty(value = "历史对话", required = true)
+    @Schema(description = "历史对话")
     private List<HistoryDTO> history;
     /**
      * 用户ID
      */
-    @ApiModelProperty(value = "用户ID", required = true)
+    @Schema(description = "用户ID")
     private String userid;
 
     /**

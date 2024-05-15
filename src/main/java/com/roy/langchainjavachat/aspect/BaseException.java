@@ -3,9 +3,12 @@ package com.roy.langchainjavachat.aspect;
 import com.roy.langchainjavachat.constant.BaseExceptionCode;
 import lombok.Getter;
 
+import java.io.Serial;
+
 @Getter
 public class BaseException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 1699933182520992595L;
     private final Long code;
     private final String description;

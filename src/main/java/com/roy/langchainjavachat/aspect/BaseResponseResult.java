@@ -1,10 +1,12 @@
 package com.roy.langchainjavachat.aspect;
 
 import java.beans.ConstructorProperties;
+import java.io.Serial;
 import java.io.Serializable;
 
 public class BaseResponseResult<T> implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     private Long code;
     private String msg;

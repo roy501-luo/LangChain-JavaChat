@@ -6,7 +6,7 @@ import dev.langchain4j.model.StreamingResponseHandler;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 import dev.langchain4j.model.output.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
